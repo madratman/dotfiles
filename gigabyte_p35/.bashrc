@@ -112,15 +112,25 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-alias ssh_tx2_public_ip="ssh -p 8890 nvidia@128.2.176.221"
 
+
+# tx2
+alias ssh_tx2_public_ip="ssh -p 8890 nvidia@128.2.176.221"
 alias ssh_tx2="ssh nvidia@192.168.0.100"
 alias sshx_tx2="ssh -X nvidia@192.168.0.100"
-source /opt/ros/indigo/setup.bash
-source /home/madratman/projects/ueye_ws/devel/setup.bash
 
-alias ssh_mavscout="ssh ubuntu@192.168.8.1"
+# ros
+source /opt/ros/indigo/setup.bash
+#source /home/madratman/projects/ueye_ws/devel/setup.bash
+alias srcws="source devel/setup.bash"
+alias catkin_make_release="catkin_make -DCMAKE_BUILD_TYPE=Release"
+
+# wire detection utils
 alias view_input="rosrun image_view image_view image:=/wires_input"
 alias view_pred="rosrun image_view image_view image:=/wires_pred"
 
-alias srcws="source devel/setup.bash"
+# docker
+alias docker_run="docker run -it -v /home/$USER:/home/$USER"
+alias docker_ros_indigo="docker run -it -v /home/$USER:/home/$USER osrf/ros:indigo-desktop-full-trusty"
+alias docker_rm_stopped_containers="docker rm -f $(docker ps -a -q)"
+alias docker_rm_untagged_images="docker rmi -f $(docker images -q --filter "dangling=true")"
