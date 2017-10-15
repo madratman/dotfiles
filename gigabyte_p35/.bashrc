@@ -134,3 +134,7 @@ alias docker_run="docker run -it -v /home/$USER:/home/$USER"
 alias docker_ros_indigo="docker run -it -v /home/$USER:/home/$USER osrf/ros:indigo-desktop-full-trusty"
 alias docker_rm_stopped_containers="docker rm -f $(docker ps -a -q)"
 alias docker_rm_untagged_images="docker rmi -f $(docker images -q --filter "dangling=true")"
+
+#git 
+alias git_init_here="git init .; base_name=$(basename $(pwd)); git remote add github git@github.com:madratman/${base_name}.git"
+
