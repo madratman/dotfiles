@@ -4,7 +4,7 @@
 
 # If not running interactively, don't do anything
 case $- in
-    *i*) ;;
+     *i*) ;;
       *) return;;
 esac
 
@@ -88,7 +88,6 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -138,3 +137,24 @@ alias docker_rm_untagged_images="docker rmi -f $(docker images -q --filter "dang
 #git 
 alias git_init_here="git init .; base_name=$(basename $(pwd)); git remote add github git@github.com:madratman/${base_name}.git"
 
+alias kdevelop="/home/madratman/appimages/KDevelop.AppImage"
+alias matlab="/home/madratman/matlab/matlab"
+alias catkin_make_release="catkin_make -DCMAKE_BUILD_TYPE=Release"
+alias catkin_make_clean="rm -rf build/ devel; catkin_make"
+alias catkin_make_release_clean="rm -rf build/ devel/; catkin_make -DCMAKE_BUILD_TYPE=Release"
+
+# gigabyte lan issues
+alias accio_internet="sudo dhclient eth0"
+alias killall_ros=killall_ros_func
+alias killall_gazebo=killall_ros_gazebo
+
+function killall_ros_func()
+{
+	kill -9 $(ps aux | grep ros | awk '{print $2}')
+}
+
+function killall_gazebo_func()
+{
+	kill -9 $(ps aux | grep gazebo | awk '{print $2}');
+	kill -9 $(ps aux | grep gz | awk '{print $2}')
+}
