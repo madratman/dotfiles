@@ -158,3 +158,27 @@ function killall_gazebo_func()
 	kill -9 $(ps aux | grep gazebo | awk '{print $2}');
 	kill -9 $(ps aux | grep gz | awk '{print $2}')
 }
+
+# https://askubuntu.com/questions/650032/gpg-errorthe-following-signatures-were-invalid-keyexpired
+alias upgrade_expired_keys=update_expired_keys_func
+
+function update_expired_keys_func()
+{
+	sudo apt-key list  | grep "expired: " | sed -ne 's|pub .*/\([^ ]*\) .*|\1|gp' | xargs -n1 sudo apt-key adv --keyserver keys.gnupg.net --recv-keys
+}
+#alias unreal=/home/madratman/software/UnrealEngine/Engine/Binaries/Linux/UE4Editor -opengl3
+alias openshot="/home/madratman/software/OpenShot-v2.4.1-x86_64.AppImage"
+
+alias rsync_resume="rsync -P -e ssh"
+alias rosbag_set_time="rosparam set use_sim_time true"
+alias rosbag_play_all="rosbag play *bag --clock"
+
+
+## mavscout
+alias ssh_mavscout_wifi="ssh -v ubuntu@192.168.8.1"
+alias ssh_mavscout_lan="ssh -v ubuntu@192.168.0.200"
+
+alias cmake_build="mkdir build && cd $_; cmake ..; make -j8"
+alias cmake_build_install="mkdir build && cd $_; cmake ..; make -j8; sudo make install"
+alias cmake_build_check="mkdir build && cd $_; cmake ..; make check -j8"
+alias cmake_build_check_install="mkdir build && cd $_; cmake ..; make check -j8; sudo make install"

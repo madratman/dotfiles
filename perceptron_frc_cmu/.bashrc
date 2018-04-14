@@ -72,4 +72,19 @@ alias kill_docker_madratman="docker rm -f `docker ps -a | grep madratman | awk '
 
 
 alias accio_pytorch="nvidia-docker run -it --rm --ipc=host -e CUDA_VISIBLE_DEVICES=`echo $CUDA_VISIBLE_DEVICES` -v /data/datasets:/data/datasets -v /storage2/datasets:/storage2/datasets -v /local:/local -v /home/$USER:/home/$USER -v /storage1:/storage1 -v /home/$USER/.ssh:/root/.ssh -v /home/$USER/.gitconfig:/root/.gitconfig -v /home/$USER/.nanorc:/root/.nanorc madratman/mavs_dnn2"
+alias accio_ompl="nvidia-docker run -it --rm --ipc=host -e CUDA_VISIBLE_DEVICES=`echo $CUDA_VISIBLE_DEVICES` -v /data/datasets:/data/datasets -v /storage2/datasets:/storage2/datasets -v /local:/local -v /home/$USER:/home/$USER -v /storage1:/storage1 -v /home/$USER/.ssh:/root/.ssh -v /home/$USER/.gitconfig:/root/.gitconfig -v /home/$USER/.nanorc:/root/.nanorc madratman/pytorch_lasagne_keras_tf_ros_ompl"
 alias squeue_job="squeue -o \"%.7i %.9P %.100j %.8u %.2t %.10M %.6D %R\""
+alias killall_ros=killall_ros_func
+alias killall_gazebo=killall_ros_gazebo
+
+function killall_ros_func()
+{
+        kill -9 $(ps aux | grep ros | awk '{print $2}')
+}
+
+function killall_gazebo_func()
+{
+        kill -9 $(ps aux | grep gazebo | awk '{print $2}');
+        kill -9 $(ps aux | grep gz | awk '{print $2}')
+}
+
